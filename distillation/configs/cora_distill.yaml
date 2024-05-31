@@ -1,0 +1,26 @@
+out_dir: results
+wandb: true
+distill: 
+  llm_dir: ../llm_features/Cora/Llama3
+dataset:
+  dir: ../dataset
+  name: Cora
+train:
+  batch_size: 32
+model:
+  type: dis_gnn
+  loss_fun: distill_loss
+  distill_temp: 0.07
+gnn:
+  layers_mp: 2
+  dim_inner: 1024
+  dim_llm: 4096
+  layer_type: gatconv
+optim:
+  optimizer: adamw
+  base_lr: 0.0001
+  max_epoch: 300
+  scheduler: cos
+  steps: [150, 200, 250]
+  lr_decay: 0.1
+  
